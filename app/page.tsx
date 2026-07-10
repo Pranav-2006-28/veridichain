@@ -145,8 +145,10 @@ export default function Home() {
   );
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0a0a0f', color: '#fff', fontFamily: "'Courier New', monospace" }}>
-      <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 32px', borderBottom: '1px solid #1e1e2e', background: 'rgba(10,10,15,0.92)', position: 'sticky', top: 0, zIndex: 100, backdropFilter: 'blur(16px)' }}>
+    <div className="cyber-grid" style={{ minHeight: '100vh', background: '#0a0a0f', color: '#fff', fontFamily: "'Courier New', monospace", position: 'relative' }}>
+      {/* Background radial gradient for sick glow */}
+      <div className="animate-pulse-glow" style={{ position: 'fixed', top: '-20%', left: '50%', transform: 'translateX(-50%)', width: '80vw', height: '80vh', background: 'radial-gradient(circle, rgba(0,255,136,0.12) 0%, rgba(10,10,15,0) 70%)', pointerEvents: 'none', zIndex: 0, borderRadius: '50%' }}></div>
+      <nav className="glass-panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 32px', borderBottom: '1px solid rgba(255,255,255,0.05)', position: 'sticky', top: 0, zIndex: 100 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }} onClick={() => setActiveTab('home')}>
             <div style={{ width: 32, height: 32, background: 'linear-gradient(135deg, #00ff88, #0066ff)', borderRadius: 7, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 14, color: '#0a0a0f' }}>V</div>
@@ -173,29 +175,55 @@ export default function Home() {
         </div>
       </nav>
 
-      <main style={{ padding: '60px 20px', maxWidth: '1000px', margin: '0 auto' }}>
+      <main style={{ padding: '60px 20px', maxWidth: '1000px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
         {activeTab === 'home' && (
           <div style={{ textAlign: 'center', marginTop: '60px' }}>
-            <div style={{ fontSize: '12px', color: '#00ff88', letterSpacing: '3px', marginBottom: '16px', fontWeight: 700 }}>POWERED BY SOLANA</div>
-            <h1 style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 900, marginBottom: '20px', background: 'linear-gradient(135deg, #ffffff, #00ff88, #0066ff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: 1.2 }}>Your Credentials.<br />On-Chain. Forever.</h1>
-            <p style={{ fontSize: '16px', color: '#888', maxWidth: '560px', margin: '0 auto 40px', lineHeight: '1.7' }}>Issue and verify academic &amp; professional credentials on Solana. One link replaces your entire resume — immutable, instant, fraud-proof.</p>
+            <div className="animate-fade-up" style={{ fontSize: '12px', color: '#00ff88', letterSpacing: '3px', marginBottom: '16px', fontWeight: 700 }}>POWERED BY SOLANA</div>
+            <h1 className="animate-fade-up text-gradient" style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontWeight: 900, marginBottom: '20px', lineHeight: 1.1 }}>Your Credentials.<br />On-Chain. Forever.</h1>
+            <p className="animate-fade-up" style={{ fontSize: '16px', color: '#888', maxWidth: '560px', margin: '0 auto 40px', lineHeight: '1.7', animationDelay: '0.1s' }}>Issue and verify academic &amp; professional credentials on Solana. One link replaces your entire resume — immutable, instant, fraud-proof.</p>
             <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <button onClick={() => setActiveTab('issue')} style={{ background: 'linear-gradient(135deg, #00ff88, #0066ff)', color: '#0a0a0f', border: 'none', padding: '14px 32px', borderRadius: '8px', fontWeight: 900, cursor: 'pointer', fontSize: '14px', letterSpacing: '1px', fontFamily: "'Courier New', monospace" }}>ISSUE CREDENTIAL</button>
-              <button onClick={() => setActiveTab('verify')} style={{ background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid #1e1e2e', padding: '14px 32px', borderRadius: '8px', fontWeight: 700, cursor: 'pointer', fontSize: '14px', letterSpacing: '1px', fontFamily: "'Courier New', monospace" }}>VERIFY CANDIDATE</button>
+              <button className="animate-fade-up animate-pulse-glow" onClick={() => setActiveTab('issue')} style={{ background: 'linear-gradient(135deg, #00ff88, #0066ff)', color: '#0a0a0f', border: 'none', padding: '14px 32px', borderRadius: '8px', fontWeight: 900, cursor: 'pointer', fontSize: '14px', letterSpacing: '1px', fontFamily: "'Courier New', monospace", transition: 'transform 0.2s', animationDelay: '0.2s' }} onMouseOver={e => e.currentTarget.style.transform='scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform='scale(1)'}>ISSUE CREDENTIAL</button>
+              <button className="glass-panel animate-fade-up" onClick={() => setActiveTab('verify')} style={{ color: '#fff', padding: '14px 32px', borderRadius: '8px', fontWeight: 700, cursor: 'pointer', fontSize: '14px', letterSpacing: '1px', fontFamily: "'Courier New', monospace", transition: 'all 0.2s', animationDelay: '0.3s' }} onMouseOver={e => e.currentTarget.style.background='rgba(255,255,255,0.1)'} onMouseOut={e => e.currentTarget.style.background='rgba(15, 15, 26, 0.6)'}>VERIFY CANDIDATE</button>
             </div>
-            <div style={{ display: 'flex', gap: '40px', justifyContent: 'center', marginTop: '60px' }}>
-              <div><div style={{ fontSize: '28px', fontWeight: 900, color: '#00ff88' }}>1.3s</div><div style={{ fontSize: '11px', color: '#555', letterSpacing: '1px', marginTop: '4px' }}>VERIFY TIME</div></div>
-              <div><div style={{ fontSize: '28px', fontWeight: 900, color: '#fff' }}>100%</div><div style={{ fontSize: '11px', color: '#555', letterSpacing: '1px', marginTop: '4px' }}>ON-CHAIN</div></div>
-              <div><div style={{ fontSize: '28px', fontWeight: 900, color: '#0066ff' }}>$0</div><div style={{ fontSize: '11px', color: '#555', letterSpacing: '1px', marginTop: '4px' }}>COST TO VERIFY</div></div>
+            <div className="animate-fade-up" style={{ display: 'flex', gap: '40px', justifyContent: 'center', marginTop: '60px', animationDelay: '0.4s' }}>
+              <div className="glass-panel" style={{ padding: '20px 30px', borderRadius: '12px', transition: 'transform 0.3s' }} onMouseOver={e => e.currentTarget.style.transform='translateY(-5px)'} onMouseOut={e => e.currentTarget.style.transform='translateY(0)'}><div className="text-gradient" style={{ fontSize: '32px', fontWeight: 900, background: 'linear-gradient(270deg, #00ff88, #fff, #00ff88)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>1.3s</div><div style={{ fontSize: '11px', color: '#888', letterSpacing: '1px', marginTop: '8px' }}>VERIFY TIME</div></div>
+              <div className="glass-panel" style={{ padding: '20px 30px', borderRadius: '12px', transition: 'transform 0.3s' }} onMouseOver={e => e.currentTarget.style.transform='translateY(-5px)'} onMouseOut={e => e.currentTarget.style.transform='translateY(0)'}><div className="text-gradient" style={{ fontSize: '32px', fontWeight: 900 }}>100%</div><div style={{ fontSize: '11px', color: '#888', letterSpacing: '1px', marginTop: '8px' }}>ON-CHAIN</div></div>
+              <div className="glass-panel" style={{ padding: '20px 30px', borderRadius: '12px', transition: 'transform 0.3s' }} onMouseOver={e => e.currentTarget.style.transform='translateY(-5px)'} onMouseOut={e => e.currentTarget.style.transform='translateY(0)'}><div className="text-gradient" style={{ fontSize: '32px', fontWeight: 900, background: 'linear-gradient(270deg, #0066ff, #fff, #0066ff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>$0</div><div style={{ fontSize: '11px', color: '#888', letterSpacing: '1px', marginTop: '8px' }}>VERIFY COST</div></div>
             </div>
             {walletConnected && (
-              <div style={{ marginTop: '50px', padding: '20px 28px', background: '#0f0f1a', borderRadius: '12px', border: '1px solid #1e1e2e', display: 'inline-flex', gap: '20px', alignItems: 'center', flexWrap: 'wrap' }}>
-                <span style={{ fontSize: '12px', color: '#555' }}>QUICK LINKS</span>
-                <a href={`/profile/${walletAddress}`} style={{ fontSize: '12px', color: '#00ff88', textDecoration: 'none', padding: '6px 14px', border: '1px solid rgba(0,255,136,0.2)', borderRadius: '6px' }}>👤 MY PROFILE</a>
-                <a href="/employer" style={{ fontSize: '12px', color: '#0066ff', textDecoration: 'none', padding: '6px 14px', border: '1px solid rgba(0,102,255,0.2)', borderRadius: '6px' }}>🏢 EMPLOYER DASHBOARD</a>
-                <a href="/institution" style={{ fontSize: '12px', color: '#888', textDecoration: 'none', padding: '6px 14px', border: '1px solid #1e1e2e', borderRadius: '6px' }}>🏛 INSTITUTION REGISTRY</a>
+              <div className="animate-fade-up glass-panel" style={{ marginTop: '50px', padding: '20px 28px', borderRadius: '12px', display: 'inline-flex', gap: '20px', alignItems: 'center', flexWrap: 'wrap', animationDelay: '0.5s' }}>
+                <span style={{ fontSize: '12px', color: '#888' }}>QUICK LINKS</span>
+                <a href={`/profile/${walletAddress}`} className="glass-panel" style={{ fontSize: '12px', color: '#00ff88', textDecoration: 'none', padding: '8px 16px', borderRadius: '8px', transition: 'all 0.2s' }} onMouseOver={e => e.currentTarget.style.background='rgba(0,255,136,0.1)'} onMouseOut={e => e.currentTarget.style.background='rgba(15, 15, 26, 0.6)'}>👤 MY PROFILE</a>
+                <a href="/employer" className="glass-panel" style={{ fontSize: '12px', color: '#0066ff', textDecoration: 'none', padding: '8px 16px', borderRadius: '8px', transition: 'all 0.2s' }} onMouseOver={e => e.currentTarget.style.background='rgba(0,102,255,0.1)'} onMouseOut={e => e.currentTarget.style.background='rgba(15, 15, 26, 0.6)'}>🏢 EMPLOYER DASHBOARD</a>
+                <a href="/institution" className="glass-panel" style={{ fontSize: '12px', color: '#fff', textDecoration: 'none', padding: '8px 16px', borderRadius: '8px', transition: 'all 0.2s' }} onMouseOver={e => e.currentTarget.style.background='rgba(255,255,255,0.1)'} onMouseOut={e => e.currentTarget.style.background='rgba(15, 15, 26, 0.6)'}>🏛 INSTITUTION REGISTRY</a>
               </div>
             )}
+
+            {/* LIVE FEED SIMULATION */}
+            <div className="animate-fade-up glass-panel" style={{ marginTop: '80px', padding: '24px', borderRadius: '16px', textAlign: 'left', animationDelay: '0.6s', maxWidth: '700px', margin: '80px auto 0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
+                <div className="animate-pulse-glow" style={{ width: 8, height: 8, background: '#00ff88', borderRadius: '50%' }}></div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#00ff88', letterSpacing: '2px' }}>LIVE NETWORK ACTIVITY</div>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {[
+                  { tx: 'Minted Credential', inst: 'Stanford Univ', time: '12s ago', icon: '🎓', color: '#00ff88' },
+                  { tx: 'Verified Badge', inst: 'Google Cloud', time: '45s ago', icon: '✓', color: '#0066ff' },
+                  { tx: 'Profile Accessed', inst: 'Employer (0x8F...2a1)', time: '2m ago', icon: '💼', color: '#a855f7' }
+                ].map((act, i) => (
+                  <div key={i} className="animate-slide-right" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', background: 'rgba(0,0,0,0.3)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', animationDelay: `${0.7 + i * 0.2}s` }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <div style={{ fontSize: '20px' }}>{act.icon}</div>
+                      <div>
+                        <div style={{ fontSize: '13px', color: '#fff', fontWeight: 'bold' }}>{act.tx}</div>
+                        <div style={{ fontSize: '11px', color: '#888' }}>{act.inst}</div>
+                      </div>
+                    </div>
+                    <div style={{ fontSize: '11px', color: act.color, border: `1px solid ${act.color}40`, background: `${act.color}15`, padding: '4px 10px', borderRadius: '20px' }}>{act.time}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         )}
 
@@ -301,20 +329,36 @@ export default function Home() {
               {walletConnected && <a href={`/profile/${walletAddress}`} style={{ color: '#00ff88', textDecoration: 'none', border: '1px solid #00ff88', padding: '8px 16px', borderRadius: '20px', fontSize: '12px' }}>EDIT PROFILE</a>}
             </div>
             {!walletConnected ? (
-              <div style={{ textAlign: 'center', padding: '60px', background: '#0f0f1a', borderRadius: '16px', border: '1px dashed #1e1e2e' }}>
+              <div className="glass-panel animate-fade-up" style={{ textAlign: 'center', padding: '60px', borderRadius: '16px', border: '1px dashed #1e1e2e' }}>
                 <p style={{ color: '#888', marginBottom: '20px' }}>Connect your Phantom wallet to view your credentials.</p>
-                <button onClick={connectWallet} style={{ background: '#00ff88', color: '#000', border: 'none', padding: '12px 24px', borderRadius: '8px', fontWeight: 900, cursor: 'pointer' }}>CONNECT WALLET</button>
+                <button onClick={connectWallet} className="animate-pulse-glow" style={{ background: '#00ff88', color: '#000', border: 'none', padding: '12px 24px', borderRadius: '8px', fontWeight: 900, cursor: 'pointer' }}>CONNECT WALLET</button>
               </div>
             ) : (
-              <div style={{ display: 'grid', gap: '20px' }}>
-                {getAllCredentialsFlat().filter(c => c.recipientWallet === walletAddress).length === 0 ? (
-                   <p style={{ color: '#888' }}>No credentials found in your wallet.</p>
-                ) : (
-                  getAllCredentialsFlat().filter(c => c.recipientWallet === walletAddress).map(c => (
-                    <div key={c.id} style={{ background: '#0f0f1a', border: '1px solid #1e1e2e', padding: '24px', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <div>
-                        <h4 style={{ margin: '0 0 5px', fontSize: '18px' }}>{c.degree}</h4>
-                        <div style={{ color: '#888', fontSize: '14px' }}>{c.institution} · {c.year}</div>
+              <div className="animate-fade-up">
+                {/* Profile Stats Overview */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '32px' }}>
+                  <div className="glass-panel" style={{ padding: '24px', borderRadius: '12px', borderLeft: '4px solid #00ff88' }}>
+                    <div style={{ fontSize: '12px', color: '#888', marginBottom: '8px' }}>TOTAL CREDENTIALS</div>
+                    <div style={{ fontSize: '32px', fontWeight: 900, color: '#fff' }}>{getAllCredentialsFlat().filter(c => c.recipientWallet === walletAddress).length}</div>
+                  </div>
+                  <div className="glass-panel" style={{ padding: '24px', borderRadius: '12px', borderLeft: '4px solid #0066ff' }}>
+                    <div style={{ fontSize: '12px', color: '#888', marginBottom: '8px' }}>PROFILE STRENGTH</div>
+                    <div className="text-gradient" style={{ fontSize: '32px', fontWeight: 900 }}>88%</div>
+                  </div>
+                </div>
+
+                <div style={{ display: 'grid', gap: '20px' }}>
+                  {getAllCredentialsFlat().filter(c => c.recipientWallet === walletAddress).length === 0 ? (
+                     <div className="glass-panel" style={{ padding: '40px', textAlign: 'center', borderRadius: '12px' }}><p style={{ color: '#888' }}>No credentials found in your wallet.</p></div>
+                  ) : (
+                    getAllCredentialsFlat().filter(c => c.recipientWallet === walletAddress).map((c, i) => (
+                      <div key={c.id} className="glass-panel animate-slide-right" style={{ padding: '24px', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', animationDelay: `${i * 0.1}s`, transition: 'transform 0.2s' }} onMouseOver={e => e.currentTarget.style.transform='translateX(5px)'} onMouseOut={e => e.currentTarget.style.transform='translateX(0)'}>
+                        <div>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                            <div style={{ width: '8px', height: '8px', background: '#00ff88', borderRadius: '50%', boxShadow: '0 0 8px #00ff88' }}></div>
+                            <h4 style={{ margin: 0, fontSize: '18px', color: '#fff' }}>{c.degree}</h4>
+                          </div>
+                          <div style={{ color: '#888', fontSize: '14px', paddingLeft: '16px' }}>{c.institution} · {c.year}</div>
                       </div>
                       <div style={{ display: 'flex', gap: '10px' }}>
                         <button onClick={() => generateCertificatePDF(c as any)} style={{ background: 'transparent', color: '#00ff88', border: '1px solid #00ff88', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', fontSize: '12px' }}>DOWNLOAD PDF</button>
@@ -323,6 +367,7 @@ export default function Home() {
                   ))
                 )}
               </div>
+            </div>
             )}
           </div>
         )}
@@ -339,16 +384,15 @@ export default function Home() {
               { step: '02', icon: '🎓', title: 'Issue Credential', desc: 'Institutions mint verified academic credentials as immutable on-chain records.' },
               { step: '03', icon: '✓', title: 'Instant Verify', desc: 'Employers verify any credential in under 2 seconds using a unique ID or QR code.' },
               { step: '04', icon: '💼', title: 'Get Hired', desc: 'Share your verified profile link. No background checks needed — trust is on-chain.' },
-            ].map((item) => (
-              <div key={item.step} style={{
-                padding: '32px 24px', background: '#0f0f1a', border: '1px solid #1e1e2e',
-                borderRadius: '16px', textAlign: 'center', transition: 'all .3s',
-                position: 'relative', overflow: 'hidden',
-              }}>
-                <div style={{ position: 'absolute', top: 12, right: 16, fontSize: '48px', fontWeight: 900, color: 'rgba(0,255,136,.04)' }}>{item.step}</div>
-                <div style={{ fontSize: '36px', marginBottom: '16px' }}>{item.icon}</div>
-                <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '8px', color: '#fff' }}>{item.title}</h3>
-                <p style={{ fontSize: '13px', color: '#888', lineHeight: '1.6' }}>{item.desc}</p>
+            ].map((item, i) => (
+              <div key={item.step} className="glass-panel animate-fade-up" style={{
+                padding: '32px 24px', borderRadius: '16px', textAlign: 'center', transition: 'all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                position: 'relative', overflow: 'hidden', animationDelay: `${0.2 + i * 0.15}s`
+              }} onMouseOver={e => { e.currentTarget.style.transform = 'translateY(-10px)'; e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,255,136,0.1)'; }} onMouseOut={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(0, 0, 0, 0.37)'; }}>
+                <div style={{ position: 'absolute', top: 12, right: 16, fontSize: '48px', fontWeight: 900, color: 'rgba(0,255,136,.06)' }}>{item.step}</div>
+                <div className="animate-pulse-glow" style={{ fontSize: '36px', marginBottom: '16px', display: 'inline-block', padding: '15px', background: 'rgba(0,0,0,0.4)', borderRadius: '50%' }}>{item.icon}</div>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '8px', color: '#fff' }}>{item.title}</h3>
+                <p style={{ fontSize: '14px', color: '#888', lineHeight: '1.6' }}>{item.desc}</p>
               </div>
             ))}
           </div>

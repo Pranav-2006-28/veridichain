@@ -169,16 +169,6 @@ veridichain/
 
 ---
 
-## 🔮 Future Roadmap
-
-- [ ] **Mainnet deployment** with Solana Program (Anchor/Rust)
-- [ ] **DID integration** (Decentralized Identifiers) for self-sovereign identity
-- [ ] **Zero-knowledge proofs** for privacy-preserving verification
-- [ ] **Multi-chain support** (Ethereum, Polygon)
-- [ ] **AI-powered skill matching** for employer-candidate pairing
-- [ ] **Mobile app** (React Native + Phantom Mobile SDK)
-
----
 
 ## 👨‍💻 Team
 
